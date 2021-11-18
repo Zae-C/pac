@@ -25,7 +25,7 @@ int main() {
     pellet.loadFromFile("pellet.png");
     sf::Sprite consume;
     consume.setTexture(pellet);
-    
+
     sf::Texture out;//1
     out.loadFromFile("owall.png");
     sf::Sprite wall;
@@ -35,21 +35,21 @@ int main() {
     out2.loadFromFile("owall.png");
     sf::Sprite wall2;
     wall2.setTexture(out2);
-    wall2.setOrigin(0,25);
+    wall2.setOrigin(0, 25);
     wall2.setRotation(90.f);
 
     sf::Texture out3;//3
     out3.loadFromFile("owall.png");
     sf::Sprite wall3;
     wall3.setTexture(out3);
-    wall3.setOrigin(0,25);
+    wall3.setOrigin(25, 25);
     wall3.setRotation(180.f);
 
     sf::Texture out4;//4
     out4.loadFromFile("owall.png");
     sf::Sprite wall4;
     wall4.setTexture(out4);
-    wall4.setOrigin(25,0);
+    wall4.setOrigin(25, 0);
     wall4.setRotation(270.f);
 
     sf::Texture side;//5
@@ -68,7 +68,7 @@ int main() {
     side3.loadFromFile("iwall.png");
     sf::Sprite is3;
     is3.setTexture(side3);
-    is3.setOrigin(0, 25);
+    is3.setOrigin(25, 25);
     is3.setRotation(180.f);
 
     sf::Texture side4;//8
@@ -83,81 +83,87 @@ int main() {
     sf::Sprite oc;
     oc.setTexture(corner);
 
-    sf::Texture corner;//10
-    corner.loadFromFile("ocorner.png");
-    sf::Sprite oc;
-    oc.setTexture(corner);
+    sf::Texture corner2;//10
+    corner2.loadFromFile("ocorner.png");
+    sf::Sprite oc2;
+    oc2.setTexture(corner2);
+    oc2.setOrigin(0, 25);
+    oc2.setRotation(90.f);
 
-    sf::Texture corner;//11
-    corner.loadFromFile("ocorner.png");
-    sf::Sprite oc;
-    oc.setTexture(corner);
+    sf::Texture corner3;//11
+    corner3.loadFromFile("ocorner.png");
+    sf::Sprite oc3;
+    oc3.setTexture(corner3);
+    oc3.setOrigin(25,25);
+    oc3.setRotation(180.f);
 
-    sf::Texture corner;//12
-    corner.loadFromFile("ocorner.png");
-    sf::Sprite oc;
-    oc.setTexture(corner);
+    sf::Texture corner4;//12
+    corner4.loadFromFile("ocorner.png");
+    sf::Sprite oc4;
+    oc4.setTexture(corner4);
+    oc4.setOrigin(25,0);
+    oc4.setRotation(270.f);
 
-    sf::Texture corner2;//13
-    corner2.loadFromFile("icorner.png");
+    sf::Texture icorner;//13
+    icorner.loadFromFile("icorner.png");
     sf::Sprite ic;
-    ic.setTexture(corner2);
+    ic.setTexture(icorner);
 
-    sf::Texture corner3;//7
-    corner3.loadFromFile("icorner.png");
+    sf::Texture icorner2;//14
+    icorner2.loadFromFile("icorner.png");
     sf::Sprite ic2;
-    ic2.setTexture(corner3);
+    ic2.setTexture(icorner2);
     ic2.setOrigin(0, 25);
     ic2.setRotation(90.f);
 
-    sf::Texture corner4;//9
-    corner4.loadFromFile("icorner.png");
+    sf::Texture icorner3;//15
+    icorner3.loadFromFile("icorner.png");
     sf::Sprite ic3;
-    ic3.setTexture(corner4);
+    ic3.setTexture(icorner3);
     ic3.setOrigin(25, 25);
     ic3.setRotation(180.f);
 
-    sf::Texture corner5;//7
-    corner5.loadFromFile("icorner.png");
+    sf::Texture icorner4;//16
+    icorner4.loadFromFile("icorner.png");
     sf::Sprite ic4;
-    ic4.setTexture(corner5);
+    ic4.setTexture(icorner4);
     ic4.setOrigin(25, 0);
     ic4.setRotation(270.f);
 
-    
+
 
     int map[31][28] = {
-        5 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,
-        11,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,8 ,8 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,
-        11,0 ,6 ,4 ,4 ,7 ,0 ,6 ,4 ,4 ,4 ,7 ,0 ,8 ,8 ,0 ,6 ,4 ,4 ,4 ,7 ,0 ,6 ,4 ,4 ,7 ,0 ,1 ,
-        11,3 ,8 ,2 ,2 ,8 ,0 ,8 ,2 ,2 ,2 ,8 ,0 ,8 ,8 ,0 ,8 ,2 ,2 ,2 ,8 ,0 ,8 ,2 ,2 ,8 ,3 ,1 ,
-        11,0 ,10,4 ,4 ,9 ,0 ,10,4 ,4 ,4 ,9 ,0 ,10,9 ,0 ,10,4 ,4 ,4 ,9 ,0 ,10,4 ,4 ,9 ,0 ,1 ,
-        11,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,
-        11,0 ,6 ,4 ,4 ,7 ,0 ,6 ,7 ,0 ,6 ,4 ,4 ,4 ,4 ,4 ,4 ,7 ,0 ,6 ,7 ,0 ,6 ,4 ,4 ,7 ,0 ,1 ,
-        11,0 ,10,4 ,4 ,9 ,0 ,8 ,8 ,0 ,10,4 ,4 ,7 ,6 ,4 ,4 ,9 ,0 ,8 ,8 ,0 ,10,4 ,4 ,9 ,0 ,1 ,
-        1 ,0 ,0 ,0 ,0 ,0 ,0 ,8 ,8 ,0 ,0 ,0 ,0 ,8 ,8 ,0 ,0 ,0 ,0 ,8 ,8 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,
-        1 ,1 ,1 ,1 ,1 ,1 ,0 ,8 ,10,4 ,4 ,7 ,2 ,8 ,8 ,2 ,6 ,4 ,4 ,9 ,8 ,0 ,5 ,1 ,1 ,1 ,1 ,1 ,
-        2 ,2 ,2 ,2 ,2 ,1 ,0 ,8 ,6 ,4 ,4 ,9 ,2 ,10,9 ,2 ,10,4 ,4 ,7 ,8 ,0 ,1 ,2 ,2 ,2 ,2 ,2 ,
-        2 ,2 ,2 ,2 ,2 ,1 ,0 ,8 ,8 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,8 ,8 ,0 ,1, 2, 2 ,2 ,2 ,2 ,
-        2 ,2 ,2 ,2 ,2 ,1 ,0 ,8 ,8 ,2 ,5 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,2 ,8 ,8 ,0 ,1 ,2 ,2 ,2 ,2 ,2 ,
-        1 ,1 ,1 ,1 ,1 ,1 ,0 ,1 ,1 ,2 ,1 ,2 ,2 ,2 ,2 ,2 ,2 ,1 ,2 ,1 ,1 ,0 ,1 ,1 ,1 ,1 ,1 ,1 ,
-        2 ,2 ,2 ,2 ,2 ,2 ,0 ,2 ,2 ,2 ,1 ,2 ,2 ,2 ,2 ,2 ,2 ,1 ,2 ,2 ,2 ,0 ,2 ,2 ,2 ,2 ,2 ,2 ,
-        1 ,1 ,1 ,1 ,1 ,1 ,0 ,6 ,7 ,2 ,1 ,2 ,2 ,2 ,2 ,2 ,2 ,1 ,2 ,6 ,7 ,0 ,5 ,1 ,1 ,1 ,1 ,1 ,
-        2 ,2 ,2 ,2 ,2 ,1 ,0 ,1 ,1 ,2 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,2 ,1 ,1 ,0 ,1 ,2 ,2 ,2 ,2 ,2 ,
-        2 ,2 ,2 ,2 ,2 ,1 ,0 ,1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2 ,2 ,1 ,1 ,0 ,1 ,2 ,2 ,2 ,2 ,2 ,
-        2 ,2 ,2 ,2 ,2 ,1 ,0 ,1 ,1 ,2 ,6 ,4 ,4 ,4 ,4 ,4 ,4 ,7 ,2 ,1 ,1 ,0 ,1 ,2 ,2 ,2 ,2 ,2 ,
-        5 ,1 ,1 ,1 ,1 ,1 ,0 ,1 ,1 ,2 ,1 ,4 ,4 ,1 ,1 ,4 ,4 ,1 ,2 ,1 ,1 ,0 ,1 ,1 ,1 ,1 ,1 ,1 ,
-        1 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,
-        1 ,0 ,6 ,4 ,4 ,7 ,0 ,6 ,4 ,4 ,4 ,7 ,0 ,1 ,1 ,0 ,6 ,4 ,4 ,4 ,7 ,0 ,6 ,4 ,4 ,7 ,0 ,1 ,
-        1 ,0 ,1 ,4 ,1 ,1 ,0 ,1 ,4 ,4 ,4 ,1 ,0 ,1 ,1 ,0 ,1 ,4 ,4 ,4 ,1 ,0 ,1 ,1 ,4 ,1 ,0 ,1 ,
-        1,3,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,3,1,
-        1,4,7,0,1,1,0,6,7,0,6,4,4,4,4,4,4,7,0,6,7,0,1,1,0,6,4,1,
-        1,4,1,0,1,1,0,1,1,0,1,4,4,1,1,4,4,1,0,1,1,0,1,1,0,1,4,1,
-        1,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,1,
-        1,0,6,4,4,4,4,1,1,4,4,7,0,1,1,0,6,4,4,1,1,4,4,4,4,7,0,1,
-        1,0,1,4,4,4,4,4,4,4,4,1,0,1,1,0,1,4,4,4,4,4,4,4,4,1,0,1,
-        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        9 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,10,
+        4 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,8 ,6 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,
+        4 ,0 ,13,5 ,5 ,14,0 ,13,5 ,5 ,5 ,14,0 ,8 ,6 ,0 ,13,5 ,5 ,5 ,14,0 ,13,5 ,5 ,14,0 ,2 ,
+        4 ,-1,8 ,-2,-2,6 ,0 ,8 ,-2,-2,-2,6 ,0 ,8 ,6 ,0 ,8 ,-2,-2,-2,6 ,0 ,8 ,-2,-2,6 ,-1,2 ,
+        4 ,0 ,16,7 ,7 ,15,0 ,16,7 ,7 ,7 ,15,0 ,16,15,0 ,16,7 ,7 ,7 ,15,0 ,16,7 ,7 ,15,0 ,2 ,
+        4 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,
+        4 ,0 ,13,5 ,5 ,14,0 ,13,14,0 ,13,5 ,5 ,5 ,5 ,5 ,5 ,14,0 ,13,14,0 ,13,5 ,5 ,14,0 ,2 ,
+        4 ,0 ,16,7 ,7 ,15,0 ,8 ,8 ,0 ,10,4 ,4 ,7 ,6 ,4 ,4 ,9 ,0 ,8 ,8 ,0 ,10,4 ,4 ,15,0 ,2 ,
+        4 ,0 ,0 ,0 ,0 ,0 ,0 ,8 ,8 ,0 ,0 ,0 ,0 ,8 ,8 ,0 ,0 ,0 ,0 ,8 ,8 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,
+        12,1 ,1 ,1 ,1 ,10,0 ,8 ,10,4 ,4 ,7 ,-2,8 ,8 ,-2,6 ,4 ,4 ,9 ,8 ,0 ,9 ,1 ,1 ,1 ,1 ,11,
+        -2,-2,-2,-2,-2,2 ,0 ,8 ,6 ,4 ,4 ,9 ,-2,10,9 ,-2,10,4 ,4 ,7 ,8 ,0 ,4 ,-2,-2,-2,-2,-2,
+        -2,-2,-2,-2,-2,2 ,0 ,8 ,8 ,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,8 ,8 ,0 ,4 ,-2,-2,-2,-2,-2,
+        -2,-2,-2,-2,-2,2 ,0 ,8 ,8 ,-2,9 ,1 ,1 ,1 ,1 ,1 ,1 ,10,-2,8 ,8 ,0 ,4 ,-2,-2,-2,-2,-2,
+        1 ,1 ,1 ,1 ,1 ,11,0 ,1 ,1 ,-2,4 ,-2,-2,-2,-2,-2,-2,2 ,-2,1 ,1 ,0 ,12,1 ,1 ,1 ,1 ,1 ,
+        -2,-2,-2,-2,-2,-2,0 ,-2,-2,-2,4 ,-2,-2,-2,-2,-2,-2,2 ,-2,-2,-2,0 ,-2,-2,-2,-2,-2,-2,
+        1 ,1 ,1 ,1 ,1 ,10,0 ,6 ,7 ,-2,4 ,-2,-2,-2,-2,-2,-2,2 ,-2,6 ,7 ,0 ,9 ,1 ,1 ,1 ,1 ,1 ,
+        -2,-2,-2,-2,-2,2 ,0 ,1 ,1 ,-2,12,3 ,3 ,3 ,3 ,3 ,3 ,11,-2,1 ,1 ,0 ,4 ,-2,-2,-2,-2,-2,
+        -2,-2,-2,-2,-2,2 ,0 ,1, 1 ,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,1 ,1 ,0 ,4 ,-2,-2,-2,-2,-2,
+        -2,-2,-2,-2,-2,2 ,0 ,1 ,1 ,-2,6 ,4 ,4 ,4 ,4 ,4 ,4 ,7 ,-2,1 ,1 ,0 ,4 ,-2,-2,-2,-2,-2,
+        9 ,3 ,3 ,3 ,3 ,11,0 ,1 ,1 ,-2,1 ,4 ,4 ,1 ,1 ,4 ,4 ,1 ,-2,1 ,1 ,0 ,12,1 ,1 ,1 ,1 ,10,
+        4 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,
+        4 ,0 ,6 ,4 ,4 ,7 ,0 ,6 ,4 ,4 ,4 ,7 ,0 ,1 ,1 ,0 ,6 ,4 ,4 ,4 ,7 ,0 ,6 ,4 ,4 ,7 ,0 ,2 ,
+        4 ,0 ,1 ,4 ,1 ,1 ,0 ,1 ,4 ,4 ,4 ,1 ,0 ,1 ,1 ,0 ,1 ,4 ,4 ,4 ,1 ,0 ,1 ,1 ,4 ,1 ,0 ,2 ,
+        4 ,-1,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,-1,2 ,
+        4 ,4 ,7 ,0 ,1 ,1 ,0 ,6 ,7 ,0 ,6 ,4 ,4 ,4 ,4 ,4 ,4 ,7 ,0 ,6 ,7 ,0 ,1 ,1 ,0 ,6 ,4 ,2 ,
+        4 ,4 ,1 ,0 ,1 ,1 ,0 ,1 ,1 ,0 ,1 ,4 ,4 ,1 ,1 ,4 ,4 ,1 ,0 ,1 ,1 ,0 ,1 ,1 ,0 ,1 ,4 ,2 ,
+        4 ,0 ,0 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,1 ,1 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,
+        4 ,0 ,6 ,4 ,4 ,4 ,4 ,1 ,1 ,4 ,4 ,7 ,0 ,1 ,1 ,0 ,6 ,4 ,4 ,1 ,1 ,4 ,4 ,4 ,4 ,7 ,0 ,2 ,
+        4 ,0 ,1 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,1 ,0 ,1 ,1 ,0 ,1 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,4 ,1 ,0 ,2 ,
+        4 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,2 ,
+        12,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,3 ,11,
 
     };
 
@@ -175,6 +181,14 @@ int main() {
         screen.clear(); //wipes screen, without this things smear
         for (int rows = 0; rows < 31; rows++)
             for (int cols = 0; cols < 28; cols++) {
+                if (map[rows][cols] == -2) {
+                    ground.setPosition(cols * 25, rows * 25);
+                    screen.draw(ground);
+                }
+                if (map[rows][cols] == -1) {
+                    power.setPosition(cols * 25, rows * 25);
+                    screen.draw(power);
+                }
                 if (map[rows][cols] == 0) {
                     consume.setPosition(cols * 25, rows * 25);
                     screen.draw(consume);
@@ -184,44 +198,64 @@ int main() {
                     screen.draw(wall);
                 }
                 if (map[rows][cols] == 2) {
-                    ground.setPosition(cols * 25, rows * 25);
-                    screen.draw(ground);
+                    wall2.setPosition(cols * 25, rows * 25);
+                    screen.draw(wall2);
                 }
                 if (map[rows][cols] == 3) {
-                    power.setPosition(cols * 25, rows * 25);
-                    screen.draw(power);
+                    wall3.setPosition(cols * 25, rows * 25);
+                    screen.draw(wall3);
                 }
                 if (map[rows][cols] == 4) {
+                    wall4.setPosition(cols * 25, rows * 25);
+                    screen.draw(wall4);
+                }
+                if (map[rows][cols] == 5) {
                     is.setPosition(cols * 25, rows * 25);
                     screen.draw(is);
                 }
-                if (map[rows][cols] == 5) {
-                    oc.setPosition(cols * 25, rows * 25);
-                    screen.draw(oc);
-                }
                 if (map[rows][cols] == 6) {
-                    ic.setPosition(cols * 25, rows * 25);
-                    screen.draw(ic);
-                }
-                if (map[rows][cols] == 7) {
-                    ic2.setPosition(cols * 25, rows * 25);
-                    screen.draw(ic2);
-                }
-                if (map[rows][cols] == 8) {
                     is2.setPosition(cols * 25, rows * 25);
                     screen.draw(is2);
                 }
+                if (map[rows][cols] == 7) {
+                    is3.setPosition(cols * 25, rows * 25);
+                    screen.draw(is3);
+                }
+                if (map[rows][cols] == 8) {
+                    is4.setPosition(cols * 25, rows * 25);
+                    screen.draw(is4);
+                }
                 if (map[rows][cols] == 9) {
+                    oc.setPosition(cols * 25, rows * 25);
+                    screen.draw(oc);
+                }
+                if (map[rows][cols] == 10) {
+                    oc2.setPosition(cols * 25, rows * 25);
+                    screen.draw(oc2);
+                }
+                if (map[rows][cols] == 11) {
+                    oc3.setPosition(cols * 25, rows * 25);
+                    screen.draw(oc3);
+                }
+                if (map[rows][cols] == 12) {
+                    oc4.setPosition(cols * 25, rows * 25);
+                    screen.draw(oc4);
+                }
+                if (map[rows][cols] == 13) {
+                    ic.setPosition(cols * 25, rows * 25);
+                    screen.draw(ic);
+                }
+                if (map[rows][cols] == 14) {
+                    ic2.setPosition(cols * 25, rows * 25);
+                    screen.draw(ic2);
+                }
+                if (map[rows][cols] == 15) {
                     ic3.setPosition(cols * 25, rows * 25);
                     screen.draw(ic3);
                 }
-                if (map[rows][cols] == 10) {
+                if (map[rows][cols] == 16) {
                     ic4.setPosition(cols * 25, rows * 25);
                     screen.draw(ic4);
-                }
-                if (map[rows][cols] == 11) {
-                    wall2.setPosition(cols * 25, rows * 25);
-                    screen.draw(wall2);
                 }
             }
         screen.display(); //flips memory drawings onto screen
