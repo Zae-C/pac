@@ -13,7 +13,10 @@ int main() {
     screen.setFramerateLimit(FPS); //set FPS
 
     //load in images
-
+    sf::Texture pac;
+    pac.loadFromFile("pcmn.png");
+    sf::Sprite man;
+    man.setTexture(pac);
 
     sf::Texture powerpellet;//-1
     powerpellet.loadFromFile("powerpellet.png");
@@ -172,9 +175,15 @@ int main() {
     int vx = 0;
     int vy = 0;
     int radius = 12.5;
-    sf::CircleShape player(radius);
-    player.setFillColor(sf::Color(250, 250, 0)); //using RGB value for color here (hex also works)
-    player.setPosition(xpos, ypos); //top left "corner" of circle (not center!)
+    int playerTick = 0;
+    int playerFrameNum = 0;
+    man.setPosition(xpos, ypos); //top left "corner" of circle (not center!)
+    sf::IntRect manSubRect;
+    manSubRect.left = 0;
+    manSubRect.top = 0;
+    manSubRect.width = 25;
+    manSubRect.height = 25;
+    man.setTextureRect(manSubRect);
     bool keys[] = { false, false, false, false };
 
     //################### HOLD ONTO YOUR BUTTS, ITS THE GAME LOOP###############################################################
@@ -205,50 +214,53 @@ int main() {
             else keys[DOWN] = false;
 
         }//end event loop---------------------------------------------------------------
-
+        int frameWidth = 25;
+        int frameHeight = 25;
+        int RowNum = 0;
+        int frameNum = 0;
+        int ticker = 0;
+        if (vx != 0 || vy != 0) {
+            ticker += 1;
+            if (ticker % 10 == 0)
+                frameNum += 1;
+            if (frameNum > 2)
+                frameNum = 0;
+        }
          //move Mr. Pac
-        if (keys[LEFT] == true)
+        if (keys[LEFT] == true) {
             vx = -3.5;
-
-        else if (keys[RIGHT] == true)
+            RowNum - 2;
+        }
+        else if (keys[RIGHT] == true) {
             vx = 3.5;
-
+            RowNum - 0;
+        }
         else vx = 0;
 
-        if (keys[UP] == true)
-        vy = -3.5;
-
-        else if (keys[DOWN] == true)
-        vy = 3.5;
-
+        if (keys[UP] == true) {
+            vy = -3.5;
+            RowNum - 1;
+        }
+        else if (keys[DOWN] == true){
+            vy = 3.5;
+        RowNum - 3;
+        }
         else vy = 0;
 
-        
+
 
         if (vx > 0 && map[(ypos) / 25][(xpos + radius * 2 + 1) / 25] >= 1) {
             vx = 0;
-            player.setFillColor(sf::Color::Color(255, 0, 0, 255));
-        }  
-        else
-            player.setFillColor(sf::Color::Color(255, 255, 0, 255));
+        }
         if (vx < 0 && map[(ypos) / 25][(xpos - 1) / 25] >= 1) {
             vx = 0;
-            player.setFillColor(sf::Color::Color(255, 0, 0, 255));
         }
-        else
-            player.setFillColor(sf::Color::Color(255, 255, 0, 255));
         if (vy > 0 && map[(ypos + radius * 2 + 1) / 25][(xpos) / 25] >= 1) {
             vy = 0;
-            player.setFillColor(sf::Color::Color(255, 0, 0, 255));
         }
-        else
-            player.setFillColor(sf::Color::Color(255, 255, 0, 255));
         if (vy < 0 && map[(ypos - 1) / 25][(xpos) / 25] >= 1) {
             vy = 0;
-            player.setFillColor(sf::Color::Color(255, 0, 0, 255));
         }
-        else
-            player.setFillColor(sf::Color::Color(255, 255, 0, 255));
 
         if (vx > 0 && map[(ypos) / 25][(xpos + radius * 2 + 1) / 25] < 1) {
             map[(ypos) / 25][(xpos + radius * 2 + 1) / 25] = -2;
@@ -270,8 +282,9 @@ int main() {
         }
         xpos += vx;
         ypos += vy;
-        player.setPosition(xpos, ypos);
-                //render section-----------------------------------------
+        
+        man.setPosition(xpos, ypos);
+        //render section-----------------------------------------
         screen.clear(); //wipes screen, without this things smear
         for (int rows = 0; rows < 31; rows++)
             for (int cols = 0; cols < 28; cols++) {
@@ -348,7 +361,26 @@ int main() {
                     screen.draw(ic4);
                 }
             }
-        screen.draw(player); //draw player
+
+        playerTick++;
+        if (playerTick == 5) {
+            playerFrameNum += 1;
+            playerTick = 0;
+        }
+        if (playerFrameNum > 2)
+            playerFrameNum = 0;
+        if (vx < 0)
+            manSubRect.top = 2 * manSubRect.height;
+        if (vx > 0)
+            manSubRect.top = 0 * manSubRect.height;
+        if (vy < 0)
+            manSubRect.top = 1 * manSubRect.height;
+        if (vy > 0)
+            manSubRect.top = 3 * manSubRect.height;
+        
+        manSubRect.left = playerFrameNum * manSubRect.width;
+        man.setTextureRect(manSubRect);
+        screen.draw(man); //draw player
         screen.display(); //flips memory drawings onto screen
 
     }//######################## end game loop ###################################################################################
